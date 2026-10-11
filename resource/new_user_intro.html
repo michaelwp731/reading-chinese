@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Getting Started - Nihao Reading</title>
+    <style>
+        :root {
+            --bg-color: #FAF7F2;
+            --card-bg: #FFFFFF;
+            --primary-orange: #D9822B;
+            --primary-orange-light: #FDF2E9;
+            --text-title: #2C3E50;
+            --text-heading: #1C1917;
+            --text-body: #7F8C8D;
+            --border-line: #EAEAEA;
+            
+            /* SRS Ratings colors matching app */
+            --rate-again-bg: #F9E2DF;
+            --rate-again-text: #A63B2E;
+            --rate-hard-bg: #EFECE6;
+            --rate-hard-text: #605B53;
+            --rate-good-bg: #E1EFE3;
+            --rate-good-text: #2E6B38;
+            --rate-easy-bg: #E1EBF5;
+            --rate-easy-text: #2B598C;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #121110;
+                --card-bg: #1C1A17;
+                --primary-orange: #E09543;
+                --primary-orange-light: #2A2118;
+                --text-title: #F5F5F4;
+                --text-heading: #E7E5E4;
+                --text-body: #A8A29E;
+                --border-line: rgba(255, 255, 255, 0.08);
+
+                --rate-again-bg: #3A201D;
+                --rate-again-text: #F0A398;
+                --rate-hard-bg: #2B2824;
+                --rate-hard-text: #D1CCC4;
+                --rate-good-bg: #1C3322;
+                --rate-good-text: #A3E0AF;
+                --rate-easy-bg: #1A2B3C;
+                --rate-easy-text: #A1C9F2;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-body);
+            line-height: 1.6;
+            padding: 32px 20px 48px;
+            max-width: 600px;
+            margin: 0 auto;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---------- Header ---------- */
+        header {
+            text-align: center;
+            padding-bottom: 24px;
+            margin-bottom: 8px;
+        }
+
+        header .pinyin {
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: var(--primary-orange);
+            margin-bottom: 2px;
+            font-weight: 500;
+        }
+
+        header .hanzi {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        header p {
+            font-size: 14px;
+            color: var(--text-body);
+            max-width: 460px;
+            margin: 0 auto;
+        }
+
+        .highlights {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 16px;
+        }
+
+        .highlights span {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--primary-orange);
+            background: var(--primary-orange-light);
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+
+        /* ---------- Card Sections ---------- */
+        .section {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 24px 20px;
+            margin-top: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-line);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title .num {
+            background-color: var(--primary-orange-light);
+            color: var(--primary-orange);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        .section-lead {
+            font-size: 13.5px;
+            color: var(--text-body);
+            margin-bottom: 16px;
+            padding-left: 40px;
+        }
+
+        /* ---------- Content Items ---------- */
+        .step-list {
+            list-style: none;
+        }
+
+        .step-item {
+            margin-bottom: 18px;
+        }
+
+        .step-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-item h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--text-heading);
+            margin-bottom: 4px;
+        }
+
+        .step-item p {
+            font-size: 13.5px;
+            color: var(--text-body);
+            line-height: 1.5;
+        }
+
+        .step-item b {
+            color: var(--text-heading);
+            font-weight: 600;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .chips span {
+            font-size: 11.5px;
+            font-weight: 500;
+            color: var(--primary-orange);
+            background: var(--primary-orange-light);
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        /* ---------- Ratings UI Mock ---------- */
+        .ratings {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .ratings div {
+            text-align: center;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 8px 0;
+            border-radius: 8px;
+            line-height: 1.25;
+        }
+
+        .ratings small {
+            display: block;
+            font-weight: 400;
+            opacity: 0.8;
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        .r-again { background: var(--rate-again-bg); color: var(--rate-again-text); }
+        .r-hard  { background: var(--rate-hard-bg); color: var(--rate-hard-text); }
+        .r-good  { background: var(--rate-good-bg); color: var(--rate-good-text); }
+        .r-easy  { background: var(--rate-easy-bg); color: var(--rate-easy-text); }
+
+        /* ---------- Tip Box ---------- */
+        .tip-box {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 13.5px;
+            border: 1px solid var(--border-line);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .tip-box strong {
+            color: var(--text-heading);
+            font-size: 14.5px;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .tip-box ol {
+            margin: 8px 0 0 18px;
+            color: var(--text-body);
+        }
+
+        .tip-box li {
+            margin-top: 4px;
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            text-align: center;
+            margin-top: 36px;
+            color: var(--text-body);
+            font-size: 13.5px;
+        }
+
+        footer .zh {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary-orange);
+            margin-bottom: 4px;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="pinyin">nǐ hǎo</div>
+        <div class="hanzi">你好</div>
+        <h1>Welcome to Nihao Reading</h1>
+        <p>Learn Chinese by reading stories you actually enjoy — with the tools to understand every word and remember it for good.</p>
+        <div class="highlights">
+            <span>Graded stories</span>
+            <span>Read-aloud audio</span>
+            <span>Pinyin &amp; translation</span>
+            <span>Smart flashcards</span>
+            <span>Import your own</span>
+        </div>
+    </header>
+
+    <!-- 1 -->
+    <div class="section">
+        <div class="section-title"><span class="num">1</span>A library that keeps growing</div>
+        <p class="section-lead">Stories are graded by HSK level, so you always read at the right difficulty.</p>
+        <ul class="step-list">
+            <li class="step-item">
+                <h4>Pick your level</h4>
+                <p>Every story shows its HSK level. Use the <b>All levels</b> menu on the Stories tab to see only the stories that fit you, and your recommendations will adapt as you read.</p>
+            </li>
+            <li class="step-item">
+                <h4>Browse by topic</h4>
+                <p>Fables and idioms, myths and legends, history, culture, everyday life, humor, and more. Scroll the home page for a row per topic, or tap <b>View all</b> to see everything in one list.</p>
+                <div class="chips">
+                    <span>Myths</span><span>Idioms</span><span>Culture</span><span>History</span><span>Life</span><span>Humor</span><span>Work</span>
+                </div>
+            </li>
+            <li class="step-item">
+                <h4>Always something new</h4>
+                <p>New stories are added regularly. Use <b>Bookmarked</b> to save the ones you want to read next, and <b>Marked as read</b> to keep track of what you have finished.</p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 2 -->
+    <div class="section">
+        <div class="section-title"><span class="num">2</span>A reader built for learners</div>
+        <p class="section-lead">Understand every sentence without leaving the page.</p>
+        <ul class="step-list">
+            <li class="step-item">
+                <h4>Lifelike read-aloud</h4>
+                <p>Tap <b>Listen now</b> to hear the story read naturally, so you learn the rhythm and tones of real Chinese. Adjust the speed from the control bar at the bottom to follow along at your pace.</p>
+            </li>
+            <li class="step-item">
+                <h4>Pinyin when you need it</h4>
+                <p>Every character comes with pinyin above it. Tap <b>PY</b> in the bottom bar to show or hide it as you get more confident.</p>
+            </li>
+            <li class="step-item">
+                <h4>Tap to translate</h4>
+                <p><b>Tap any word</b> for its pinyin, meaning and example sentences. <b>Long-press a word</b> to see the translation of the whole sentence. Prefer the full picture? Tap <b>EN</b> to show the English translation of the story.</p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 3 -->
+    <div class="section">
+        <div class="section-title"><span class="num">3</span>Flashcards that make words stick</div>
+        <p class="section-lead">Powered by spaced repetition (SRS), the method proven to help you remember more in less time.</p>
+        <ul class="step-list">
+            <li class="step-item">
+                <h4>Save words as you read</h4>
+                <p>Found a word you want to remember? Tap it, then tap the save button. It goes straight into your Flashcards, along with its meaning and examples.</p>
+            </li>
+            <li class="step-item">
+                <h4>Review at the perfect moment</h4>
+                <p>Open the <b>Flashcards</b> tab and start a study session. After you reveal a card, tell us how well you knew it. Words you find hard come back soon; words you know well come back later, right before you would forget them.</p>
+                <div class="ratings">
+                    <div class="r-again">Again<small>today</small></div>
+                    <div class="r-hard">Hard<small>1 day</small></div>
+                    <div class="r-good">Good<small>1 day+</small></div>
+                    <div class="r-easy">Easy<small>3 days+</small></div>
+                </div>
+            </li>
+            <li class="step-item">
+                <h4>Build a habit</h4>
+                <p>Set a daily goal that fits your schedule, and a few minutes a day is all it takes to keep your vocabulary growing.</p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- 4 -->
+    <div class="section">
+        <div class="section-title"><span class="num">4</span>Read your own material</div>
+        <p class="section-lead">Turn anything you want to read into an interactive story, with the same pinyin, translation and read-aloud.</p>
+        <ul class="step-list">
+            <li class="step-item">
+                <h4>Snap a photo</h4>
+                <p>Open the <b>Import</b> tab and take a photo of a book page, a menu, a sign or a worksheet (or choose one from your photo library). The text is recognized for you, and you can review it before it becomes a story.</p>
+            </li>
+            <li class="step-item">
+                <h4>PDF or pasted text</h4>
+                <p>Import a PDF, or paste any Chinese text, such as an article, a message from a friend or song lyrics. Everything is organized into pages that are easy to read.</p>
+            </li>
+            <li class="step-item">
+                <h4>Instant translation and read-aloud</h4>
+                <p>Imported stories work just like the built-in ones: tap a word to look it up, switch on the English translation, and listen to the text read aloud on demand. Your imported books are kept in your library for next time.</p>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Tip 1 -->
+    <div class="tip-box">
+        <strong>💡 A simple way to start today</strong>
+        <ol>
+            <li>Open the <b>Stories</b> tab and choose a short story at your level.</li>
+            <li>Listen while you read, and tap any word you don't know.</li>
+            <li>Save two or three words, then try a quick <b>Flashcards</b> session.</li>
+        </ol>
+    </div>
+
+    <!-- Tip 2 -->
+    <div class="tip-box">
+        <strong>☁️ Switching phones?</strong>
+        <p style="margin-top: 4px;">Sign in from the <b>Me</b> tab (it's optional) and your saved words, progress and imported books follow you to your other devices.</p>
+    </div>
+
+    <footer>
+        <div class="zh">加油！</div>
+        Happy reading — you've got this.
+    </footer>
+
+</body>
+</html>
